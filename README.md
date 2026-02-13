@@ -8,6 +8,8 @@ A lightweight, real-time system monitoring service for Raspberry Pi/Linux system
 
 [中文文档](README_CN.md)
 
+![Raspberry Monitor Dashboard](docs/screenshot.png)
+
 ## Features
 
 - **CPU Monitoring**: Usage, frequency, temperature, throttling status

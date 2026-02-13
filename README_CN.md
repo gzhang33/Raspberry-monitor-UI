@@ -8,6 +8,8 @@
 
 [English Documentation](README.md)
 
+![Raspberry Monitor 仪表盘](docs/screenshot.png)
+
 ## 功能特性
 
 - **CPU 监控**：使用率、频率、温度、节流状态
