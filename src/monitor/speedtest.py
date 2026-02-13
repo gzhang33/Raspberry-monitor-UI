@@ -6,7 +6,7 @@ import subprocess
 import threading
 import time
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from monitor.config import SpeedtestConfig
 
@@ -32,7 +32,7 @@ class SpeedtestManager:
         self._last_attempt_time: float = 0
         self._lock = threading.Lock()
 
-    def get_status(self) -> Dict[str, Any]:
+    def get_status(self) -> dict[str, Any]:
         """Get current speedtest status and results."""
         with self._lock:
             return {
@@ -67,7 +67,7 @@ class SpeedtestManager:
     def _run_speedtest(self) -> None:
         """Execute speedtest in background thread."""
         error: Optional[str] = None
-        new_data: Optional[Dict[str, float]] = None
+        new_data: Optional[dict[str, float]] = None
 
         if not os.path.exists(self._config.cli_path):
             error = f"{self._config.cli_path} not found"

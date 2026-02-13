@@ -2,9 +2,7 @@
 
 import time
 
-import pytest
-
-from monitor.cache import TTLCache, RateCalculator
+from monitor.cache import RateCalculator, TTLCache
 
 
 class TestTTLCache:

@@ -1,7 +1,5 @@
 """Tests for CPU collector."""
 
-import pytest
-
 from monitor.collectors.cpu import CPUCollector
 
 

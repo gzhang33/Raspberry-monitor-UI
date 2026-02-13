@@ -1,9 +1,6 @@
 """Network metrics collector."""
 
-import subprocess
-import threading
-import time
-from typing import Any, Dict, Optional
+from typing import Any
 
 from monitor.cache import RateCalculator
 from monitor.collectors.base import BaseCollector
@@ -20,7 +17,7 @@ class NetworkCollector(BaseCollector):
     def name(self) -> str:
         return "network"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect network metrics from /proc/net/dev.
 
         Returns:
@@ -42,7 +39,7 @@ class NetworkCollector(BaseCollector):
             rx_bytes = 0
             tx_bytes = 0
 
-            with open("/proc/net/dev", "r") as f:
+            with open("/proc/net/dev") as f:
                 for line in f:
                     if ":" in line:
                         parts = line.split(":")

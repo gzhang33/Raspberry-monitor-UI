@@ -9,7 +9,7 @@ import logging
 import os
 import socketserver
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from monitor.config import Config, get_config
 from monitor.handlers import HealthHandler, SystemStatsHandler, TailscaleHandler

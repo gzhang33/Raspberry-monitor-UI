@@ -5,8 +5,8 @@ Provides caching to reduce system call overhead for frequent polling.
 
 import threading
 import time
-from dataclasses import dataclass, field
-from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+from dataclasses import dataclass
+from typing import Callable, Generic, Optional, TypeVar
 
 T = TypeVar("T")
 
@@ -58,7 +58,7 @@ class MultiKeyCache(Generic[T]):
     """Thread-safe TTL cache supporting multiple keys."""
 
     def __init__(self, default_ttl: float = 2.0):
-        self._cache: Dict[str, CacheEntry[T]] = {}
+        self._cache: dict[str, CacheEntry[T]] = {}
         self._lock = threading.Lock()
         self._default_ttl = default_ttl
 

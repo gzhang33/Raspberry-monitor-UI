@@ -2,7 +2,7 @@
 
 import pytest
 
-from monitor.config import Config, ServerConfig, CacheConfig, SpeedtestConfig
+from monitor.config import CacheConfig, Config, ServerConfig, SpeedtestConfig
 
 
 class TestServerConfig:

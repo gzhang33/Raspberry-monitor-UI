@@ -1,13 +1,13 @@
 """Health check handler."""
 
-from typing import Dict, Any
+from typing import Any
 
 
 class HealthHandler:
     """Handler for health check endpoint."""
 
     @staticmethod
-    def check() -> Dict[str, Any]:
+    def check() -> dict[str, Any]:
         """Return health status.
 
         Returns:

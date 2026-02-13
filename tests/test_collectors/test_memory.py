@@ -1,7 +1,5 @@
 """Tests for memory collector."""
 
-import pytest
-
 from monitor.collectors.memory import MemoryCollector
 
 

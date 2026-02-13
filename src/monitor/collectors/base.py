@@ -1,7 +1,7 @@
 """Base class for all metric collectors."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict
+from typing import Any
 
 
 class BaseCollector(ABC):
@@ -17,7 +17,7 @@ class BaseCollector(ABC):
         pass
 
     @abstractmethod
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect and return metrics.
 
         Returns:

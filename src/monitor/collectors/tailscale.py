@@ -4,7 +4,7 @@ import json
 import subprocess
 import threading
 import time
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from monitor.collectors.base import BaseCollector
 
@@ -14,7 +14,7 @@ class TailscaleCollector(BaseCollector):
 
     def __init__(self, cache_ttl: float = 15.0):
         self._cache_ttl = cache_ttl
-        self._cache: Optional[Dict[str, Any]] = None
+        self._cache: Optional[dict[str, Any]] = None
         self._cache_time: float = 0
         self._lock = threading.Lock()
 
@@ -22,7 +22,7 @@ class TailscaleCollector(BaseCollector):
     def name(self) -> str:
         return "tailscale"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect Tailscale status.
 
         Returns:
@@ -45,7 +45,7 @@ class TailscaleCollector(BaseCollector):
 
         return result
 
-    def _fetch_status(self) -> Dict[str, Any]:
+    def _fetch_status(self) -> dict[str, Any]:
         """Fetch Tailscale status from CLI."""
         try:
             result = subprocess.run(
@@ -66,6 +66,6 @@ class TailscaleCollector(BaseCollector):
 
         return self._default_result()
 
-    def _default_result(self) -> Dict[str, Any]:
+    def _default_result(self) -> dict[str, Any]:
         """Return default disconnected status."""
         return {"tailscale_connected": False, "tailscale_ip": "-"}

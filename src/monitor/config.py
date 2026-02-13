@@ -3,8 +3,8 @@
 Supports configuration via environment variables with sensible defaults.
 """
 
-from dataclasses import dataclass, field
 import os
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 

@@ -1,8 +1,7 @@
 """Disk metrics collector."""
 
 import subprocess
-import time
-from typing import Any, Dict
+from typing import Any
 
 from monitor.cache import RateCalculator
 from monitor.collectors.base import BaseCollector
@@ -19,7 +18,7 @@ class DiskCollector(BaseCollector):
     def name(self) -> str:
         return "disk"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect disk metrics from df and /proc/diskstats.
 
         Returns:
@@ -61,7 +60,7 @@ class DiskCollector(BaseCollector):
         try:
             curr_read = 0
             curr_write = 0
-            with open("/proc/diskstats", "r") as f:
+            with open("/proc/diskstats") as f:
                 for line in f:
                     parts = line.split()
                     # Looking for mmcblk0 (SD card), sda (SSD), or vda (virtio)

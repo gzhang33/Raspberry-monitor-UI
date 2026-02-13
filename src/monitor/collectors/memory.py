@@ -1,6 +1,6 @@
 """Memory metrics collector."""
 
-from typing import Any, Dict
+from typing import Any
 
 from monitor.collectors.base import BaseCollector
 
@@ -12,7 +12,7 @@ class MemoryCollector(BaseCollector):
     def name(self) -> str:
         return "memory"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect memory metrics from /proc/meminfo.
 
         Returns:
@@ -29,7 +29,7 @@ class MemoryCollector(BaseCollector):
 
         try:
             meminfo = {}
-            with open("/proc/meminfo", "r") as f:
+            with open("/proc/meminfo") as f:
                 for line in f:
                     parts = line.split(":")
                     key = parts[0].strip()

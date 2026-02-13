@@ -1,7 +1,7 @@
 """Process metrics collector."""
 
 import subprocess
-from typing import Any, Dict, List
+from typing import Any
 
 from monitor.collectors.base import BaseCollector
 
@@ -16,7 +16,7 @@ class ProcessCollector(BaseCollector):
     def name(self) -> str:
         return "process"
 
-    def collect(self) -> List[Dict[str, Any]]:
+    def collect(self) -> list[dict[str, Any]]:
         """Collect top processes by CPU usage.
 
         Returns:
@@ -63,7 +63,7 @@ class ProcessCollector(BaseCollector):
     def _get_cpu_core_count(self) -> int:
         """Get the number of CPU cores."""
         try:
-            with open("/proc/cpuinfo", "r") as f:
+            with open("/proc/cpuinfo") as f:
                 return sum(1 for line in f if line.strip().startswith("processor"))
         except Exception:
             return 1

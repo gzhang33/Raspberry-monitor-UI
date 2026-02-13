@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from typing import Any, Dict
+from typing import Any
 
 from monitor.collectors.base import BaseCollector
 
@@ -14,7 +14,7 @@ class OverviewCollector(BaseCollector):
     def name(self) -> str:
         return "overview"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect system overview.
 
         Returns:
@@ -53,7 +53,7 @@ class OverviewCollector(BaseCollector):
     def _get_uptime(self) -> float:
         """Get system uptime in seconds."""
         try:
-            with open("/proc/uptime", "r") as f:
+            with open("/proc/uptime") as f:
                 return float(f.read().split()[0])
         except Exception:
             return 0

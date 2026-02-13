@@ -1,7 +1,6 @@
 """System stats API handler."""
 
-import time
-from typing import Any, Dict, List
+from typing import Any
 
 from monitor.cache import TTLCache
 from monitor.collectors import (
@@ -35,26 +34,24 @@ class SystemStatsHandler:
         )
 
         # Process collector has its own cache
-        self._process_cache = TTLCache[List[Dict[str, Any]]](
+        self._process_cache = TTLCache[list[dict[str, Any]]](
             ttl=self._config.cache.process_list_ttl
         )
 
         # Main stats cache
-        self._stats_cache = TTLCache[Dict[str, Any]](
+        self._stats_cache = TTLCache[dict[str, Any]](
             ttl=self._config.cache.system_stats_ttl
         )
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get complete system statistics.
 
         Uses caching to reduce system call overhead.
         """
         return self._stats_cache.get_or_compute(self._collect_all_stats)
 
-    def _collect_all_stats(self) -> Dict[str, Any]:
+    def _collect_all_stats(self) -> dict[str, Any]:
         """Collect all statistics."""
-        now = time.time()
-
         # Get process list with its own TTL
         processes = self._process_cache.get_or_compute(
             lambda: self._process_collector.collect(),

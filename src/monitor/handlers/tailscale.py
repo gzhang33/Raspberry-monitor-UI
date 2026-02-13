@@ -1,6 +1,6 @@
 """Tailscale info handler."""
 
-from typing import Dict, Any
+from typing import Any
 
 from monitor.collectors import TailscaleCollector
 from monitor.config import get_config
@@ -15,7 +15,7 @@ class TailscaleHandler:
             cache_ttl=config.cache.tailscale_cache_ttl
         )
 
-    def get_info(self) -> Dict[str, Any]:
+    def get_info(self) -> dict[str, Any]:
         """Get Tailscale connection info.
 
         Returns:

@@ -1,7 +1,7 @@
 """Sensors metrics collector (Raspberry Pi specific)."""
 
 import subprocess
-from typing import Any, Dict
+from typing import Any
 
 from monitor.collectors.base import BaseCollector
 
@@ -16,7 +16,7 @@ class SensorsCollector(BaseCollector):
     def name(self) -> str:
         return "sensors"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect sensor metrics using vcgencmd.
 
         Returns:
@@ -72,7 +72,7 @@ class SensorsCollector(BaseCollector):
 
         return result
 
-    def _parse_throttled(self, status: str) -> Dict[str, Any]:
+    def _parse_throttled(self, status: str) -> dict[str, Any]:
         """Parse the throttled status hex value."""
         try:
             raw = int(status, 16)

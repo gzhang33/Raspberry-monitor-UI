@@ -1,6 +1,6 @@
 """CPU metrics collector."""
 
-from typing import Any, Dict
+from typing import Any
 
 from monitor.collectors.base import BaseCollector
 
@@ -16,7 +16,7 @@ class CPUCollector(BaseCollector):
     def name(self) -> str:
         return "cpu"
 
-    def collect(self) -> Dict[str, Any]:
+    def collect(self) -> dict[str, Any]:
         """Collect CPU metrics from /proc/stat and /sys/.../cpufreq.
 
         Returns:
@@ -29,7 +29,7 @@ class CPUCollector(BaseCollector):
 
         # 1. Calculate CPU % using /proc/stat
         try:
-            with open("/proc/stat", "r") as f:
+            with open("/proc/stat") as f:
                 line = f.readline()
                 if line.startswith("cpu"):
                     # cpu  user nice system idle iowait irq softirq steal guest guest_nice
@@ -52,7 +52,7 @@ class CPUCollector(BaseCollector):
 
         # 2. Get CPU Frequency
         try:
-            with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r") as f:
+            with open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq") as f:
                 result["freq"] = int(f.read().strip()) // 1000
         except Exception:
             pass
