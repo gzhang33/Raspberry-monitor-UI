@@ -1,0 +1,30 @@
+[Unit]
+Description=OpenClaw System Monitor (port 10000)
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+Group=admin
+WorkingDirectory=/home/admin/monitor
+Environment=MONITOR_PORT=10000
+Environment=SPEEDTEST_INTERVAL_SEC=300
+Environment=SPEEDTEST_TIMEOUT_SEC=60
+Environment=TAILSCALE_CACHE_TTL_SEC=15
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/python3 /home/admin/monitor/server.py
+Restart=always
+RestartSec=3
+
+StandardOutput=journal
+StandardError=journal
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=false
+ReadWritePaths=/home/admin/monitor
+
+[Install]
+WantedBy=multi-user.target
