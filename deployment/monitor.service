@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenClaw System Monitor (port 10000)
+Description=Raspberry Monitor (port 10000)
 After=network.target
 
 [Service]
@@ -13,7 +13,9 @@ Environment=SPEEDTEST_TIMEOUT_SEC=60
 Environment=TAILSCALE_CACHE_TTL_SEC=15
 Environment=PYTHONUNBUFFERED=1
 Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/usr/bin/python3 /home/admin/monitor/server.py
+# Use pip-installed entry point
+ExecStart=/usr/local/bin/raspberry-monitor
+# Or use module: /usr/bin/python3 -m monitor
 Restart=always
 RestartSec=3
 
@@ -24,7 +26,6 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=full
 ProtectHome=false
-ReadWritePaths=/home/admin/monitor
 
 [Install]
 WantedBy=multi-user.target
